@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Chordata Services{% endblock %}
+
+{% block nav %}
+{% if user.is_authenticated %}
+<ul>
+  <li><a href="{% url 'homePage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+      <span class="tooltip">Home</span>
+    </a>
+  </li>
+  <!--
+  <li style="float:right; padding: 14px;">
+    Logged in as: {{ user.display_name }}
+  </li>
+  <li style="float:right"><a href="{% url 'logout' %}">
+    {% load static %}
+      <img src="{% static '/graphics/exit_eff1f7.png' %}" alt="Log out" style="width:20px;"></img>
+      <span class="tooltip">Log out</span>
+    </a>
+  </li>
+-->
+</ul>
+{% else %}  
+<ul>
+    <li><a href="{% url 'homePage' %}">
+      {% load static %}
+        <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+        <span class="tooltip">Home</span>
+      </a>
+    </li>
+    <!--
+    <li style="float:right"><a href="{% url 'signup' %}">
+      {% load static %}
+        <img src="{% static '/graphics/user-add_eff1f7.png' %}" alt="Sign up" style="width:20px;"></img>
+        <span class="tooltipright">Create an account</span>
+      </a>
+    </li>
+    <li style="float:right"><a href="{% url 'login' %}">
+      {% load static %}
+        <img src="{% static '/graphics/id-badge_eff1f7.png' %}" alt="Log in" style="width:20px;"></img>
+        <span class="tooltip">Log in</span>
+      </a>
+    </li>
+  -->
+  </ul>  
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="splash">
+    <a href="{% url 'homePage' %}">
+        {% load static %}
+        <center><img src="{% static '/graphics/Chordata_Services_Logo_Colour.png' %}" alt="Splash page logo" style="width:1000px;"></img></center>
+    </a>
+</div>
+
+{% endblock %}

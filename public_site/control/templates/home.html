@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Chordata | Home{% endblock %}
+
+{% block nav %}
+{% if user.is_authenticated %}
+<ul>
+  <li><a class="active" href="{% url 'homePage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+      <span class="tooltip">Home</span>
+    </a>
+  </li>
+  <!--
+  <li style="float:right; padding: 14px;">
+    Logged in as: {{ user.display_name }}
+  </li>
+  <li style="float:right"><a href="{% url 'logout' %}">
+    {% load static %}
+      <img src="{% static '/graphics/exit_eff1f7.png' %}" alt="Log out" style="width:20px;"></img>
+      <span class="tooltip">Log out</span>
+    </a>
+  </li>
+  -->
+</ul>
+{% else %}  
+<ul>
+    <li><a class="active" href="{% url 'homePage' %}">
+      {% load static %}
+        <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+        <span class="tooltip">Home</span>
+      </a>
+    </li>
+    <!--
+    <li style="float:right"><a href="{% url 'signup' %}">
+      {% load static %}
+        <img src="{% static '/graphics/user-add_eff1f7.png' %}" alt="Sign up" style="width:20px;"></img>
+        <span class="tooltipright">Create an account</span>
+      </a>
+    </li>
+    <li style="float:right"><a href="{% url 'login' %}">
+      {% load static %}
+        <img src="{% static '/graphics/id-badge_eff1f7.png' %}" alt="Log in" style="width:20px;"></img>
+        <span class="tooltip">Log in</span>
+      </a>
+    </li>
+    -->
+  </ul>  
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="para-1">
+  <h1>Chordata Services Incorporated</h1>
+  <h2>Helping businesses do business</h2>
+
+  <p>Chordata Services provides practical information and support that make the job of running a business easier.</p>
+</div>
+
+<div class="parallax-1"><h2>Information</h2></div>
+
+</div>
+<table>
+  <tr>
+    <td>
+      <div class="tool_table">
+        <ul>
+          <a  href="{% url 'blog:blogStartPage' %}">Starting a business
+            <span class="tooltip">Learn about the considerations and steps to create your own business
+            </span> 
+          </a>      
+        </ul> 
+        <ul>
+          <a>Running a business
+            <span class="tooltip">Understand the functions and requirements to operate a business
+            </span> 
+          </a>
+        </ul> 
+        <ul>
+          <a>Exiting a business
+            <span class="tooltip">Plan for the eventual separation from your business
+            </span> 
+          </a>
+        </ul> 
+      </div>
+  </tr>
+</table>
+
+<div class="parallax-2"><h2>Support</h2></div>
+
+<table>
+  <tr>
+    <td>
+      <div class="tool_table">
+        <ul>
+          <a href="">Bookkeeping
+            <span class="tooltip">Our bookkeeping support includes performing the routine monthly tasks of 
+              coding transactions, reconciling bank accounts, and generating the corresponding financial statements. 
+              We also assist with generating 1099s and coordinating with your tax preparer.
+            </span> 
+          </a>      
+        </ul> 
+        <ul>
+          <a>Payroll administration
+            <span class="tooltip">Our payroll administration involves managing employee profiles, monitoring timesheets, 
+              and submitting payroll for payment in conjunction with your payroll processor.
+            </span> 
+          </a>
+        </ul> 
+        <ul>
+          <a>Sales compensation
+            <span class="tooltip">Sales compensation covers the calculation, reporting, and processing 
+              of the residuals and commissions your sales team earns. 
+            </span> 
+          </a>
+        </ul> 
+        <ul>
+          <a>Pricing
+            <span class="tooltip">Pricing support offers <i>pro forma</i> projections to understand the pros, cons, 
+              and potential profitability of your company’s pricing strategy. 
+            </span> 
+          </a>
+        </ul> 
+        <ul>
+          <a>Business analysis
+            <span class="tooltip">Business analysis includes forms and templates to help you complete 
+              business valuations, analyze capital expenditures, or compare the return on investment (ROI) of company projects.
+            </span> 
+          </a>
+        </ul> 
+        <ul>
+          <a>Recordkeeping
+            <span class="tooltip">Recordkeeping refers to the recording and retention of official minutes of your company's 
+              legally-required annual management and shareholder meetings. We can also assist with tracking company ownership 
+              records and reporting requirements.
+            </span> 
+          </a>
+        </ul> 
+      </div>
+  </tr>
+</table>
+
+
+<div class="parallax-3"><h2>Contact</h2></div>
+
+<div class="para-1">
+  <ul>
+    <span>Email: contact@chordataservices.com</span>
+  </ul> 
+  <ul>
+    <span>Phone: 347-420-1988</span>
+  </ul> 
+</div>
+{% endblock %}
