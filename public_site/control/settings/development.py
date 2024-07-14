@@ -17,7 +17,7 @@ SECRET_KEY = v_call_secret_key.fxCallSecret()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','chordataservices.dev','www.chordataservices.dev']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -54,9 +54,9 @@ DATABASES = {
 
 mimetypes.add_type("text/css", ".css", True)
 
-STATIC_ROOT= BASE_DIR
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(STATIC_ROOT, 'static'),)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'

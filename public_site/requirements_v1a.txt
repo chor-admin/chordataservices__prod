@@ -6,10 +6,11 @@ certifi==2024.7.4
 cffi==1.16.0
 charset-normalizer==3.3.2
 cryptography==42.0.8
-Django==5.0.6
+Django==5.0.7
 django-environ==0.11.2
 idna==3.7
 isodate==0.6.1
+mod-wsgi==5.0.0
 msal==1.29.0
 msal-extensions==1.2.0
 pillow==10.4.0

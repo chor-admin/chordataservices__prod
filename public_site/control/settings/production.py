@@ -1,45 +1,54 @@
+'''
+Development settings are development specfic settings that build on
+the Common settings file
+'''
 import os
-import environ
 import mimetypes
 
+#Import modules
 from control.settings.common import *
-from pathlib import Path
+from utilities.azure_key_vault import GetSecret
 
-env = environ.Env()
-environ.Env.read_env()
 
-SECRET_KEY = env('PROD_SECRET')
+# SECURITY WARNING: keep the secret key used in production secret!
+v_call_secret_key=GetSecret("django-prod-secret")
+SECRET_KEY = v_call_secret_key.fxCallSecret()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.chordataservices.com']
-
+ALLOWED_HOSTS = ['chordataservices.com','www.chordataservices.com']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+v_call_database=GetSecret("db-name-prod")
+v_call_user=GetSecret("srvcs-account-name")
+v_call_password=GetSecret("srvcs-passcode")
+v_call_host=GetSecret("prod-host-ip")
+v_call_port=GetSecret("prod-host-port")
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {'options': '-c search_path=django_system,public'},
-        'NAME': env('PROD_DB_NAME'),
-        'USER': env("PROD_DB_USER"),
-        'PASSWORD': env("PROD_DB_PASSWORD"),
-        'HOST': env("PROD_DB_HOST"),
-        'PORT': env("PROD_DB_PORT"),
+        'NAME': v_call_database.fxCallSecret(),
+        'USER': v_call_user.fxCallSecret(),
+        'PASSWORD': v_call_password.fxCallSecret(),
+        'HOST': v_call_host.fxCallSecret(),
+        'PORT': v_call_port.fxCallSecret(),
     },
 
     'data': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {'options': '-c search_path=django_data,public'},
-        'NAME': env('PROD_DB_NAME'),
-        'USER': env("PROD_DB_USER"),
-        'PASSWORD': env("PROD_DB_PASSWORD"),
-        'HOST': env("PROD_DB_HOST"),
-        'PORT': env("PROD_DB_PORT"),
+        'NAME': v_call_database.fxCallSecret(),
+        'USER': v_call_user.fxCallSecret(),
+        'PASSWORD': v_call_password.fxCallSecret(),
+        'HOST': v_call_host.fxCallSecret(),
+        'PORT': v_call_port.fxCallSecret(),
     }
 }
+
 
 #HTTPS settings
 SESSION_COOKIE_SECURE = True
@@ -57,9 +66,9 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 mimetypes.add_type("text/css", ".css", True)
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
-STATIC_ROOT = [BASE_DIR / 'staticfiles']
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
-MEDIA_ROOT = [BASE_DIR / 'media']
