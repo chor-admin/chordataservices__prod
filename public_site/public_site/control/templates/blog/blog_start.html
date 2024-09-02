@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Chordata | Blog{% endblock %}
+
+{% block nav %}
+<ul>
+  <li><a href="{% url 'homePage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+      <span class="tooltip">Home</span>
+    </a>
+  </li>
+  <li><a class="active" href="{% url 'blog:blogStartPage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Start a business blog" style="width:20px;"></img>
+      <span class="tooltip">Start a business</span>
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Starting a business</h1>
+
+<div class="blog_list">
+  <p><b>NOTE: </b>The views, idea, and opinions expressed in this blog are shared as informal advise based on
+    personal experience. Experiences, rules, laws, and results will vary.
+    The information communicated here should not be relied on as current or definitive. Please consult
+    with a lawyer, CPA, tax specialist, or other professional about your specific sitiuation before
+    making any signficant business decision.
+  </p>
+  
+    {% for post in object_list %}
+    <div class="blog_card">
+      {% if post.image %}
+      <img class="blog_img" src="{{ post.image.url }}" alt="{{ post.title }}">
+      {% endif %}
+      <div>
+        <a href="{% url 'blog:blogStartPost' post.id post.slug %}">
+          <h2 class="card-title my-3">{{ post.title }} </h2>
+        </a>
+        <div class="text-muted mb-3">
+          <div>
+            <span>created: {{ post.created_on|date:"Y M d" }} |</span>
+            <span>updated: {{ post.updated_on|timesince }} ago |</span>
+            <span>author: {{ post.author }}</span>
+          </div>
+          <div>
+            {% for tag in post.tags.all %}
+            <span class="badge badge-dark">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+        <a class='btn btn-primary' href="{% url 'blog:blogStartPost' post.id post.slug %}">Read more ...</a>
+      </div>
+    </div>
+    {% endfor %}
+  
+
+  <!-- Pagination -->
+  <div class="row">
+    <nav class="col-lg-6 offset-lg-3 mt-4 d-flex justify-content-center">
+      <ul class="pagination">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+        {% endif %}
+  
+        {% for i in page_obj.paginator.page_range %}
+        <li class=" page-item {% if page_obj.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  </div>
+  <!-- /Pagination -->
+
+</div>
+
+{% endblock %}

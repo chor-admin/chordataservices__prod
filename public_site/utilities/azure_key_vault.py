@@ -24,7 +24,7 @@ class GetSecret():
         self.v_secret_name = p_secret_name
     
     def fxCallSecret(self):    
-        v_key_vault_name = 'akv-451-production'
+        v_key_vault_name = ''
         v_key_vault_uri = f"https://{v_key_vault_name}.vault.azure.net"
         v_credential = DefaultAzureCredential()
         client = SecretClient(vault_url=v_key_vault_uri, credential=v_credential)
