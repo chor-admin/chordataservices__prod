@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head_title %}{{ post.title }}{% endblock %}
+
+{% block nav %}
+<ul>
+  <li><a href="{% url 'homePage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/home_eff1f7.png' %}" alt="Home" style="width:20px;"></img>
+      <span class="tooltip">Home</span>
+    </a>
+  </li>
+  <li><a href="{% url 'blog:blogStartPage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Starting a business blog" style="width:20px;"></img>
+      <span class="tooltip">Start a business</span>
+    </a>
+  </li>
+  <li><a href="{% url 'blog:blogRunPage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Running a business blog" style="width:20px;"></img>
+      <span class="tooltip">Run a business</span>
+    </a>
+  </li>
+  <li><a class="active" href="{% url 'blog:blogExitPage' %}">
+    {% load static %}
+      <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Exiting a business blog" style="width:20px;"></img>
+      <span class="tooltip">Exit a business</span>
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+
+      <div class="card">
+        <h2 class="card-title text-center my-3">{{ post.title }}</h2>
+        <div class="text-muted text-center mb-3">
+          {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+          {% endif %}
+          <div>
+            {% for tag in post.tags.all %}
+            <span class="badge badge-dark">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="card-text mt-5 p-4">
+          {{ post.content }}
+        </div>
+        <div>
+          created: {{ post.created_on|date:"Y-M-d" }},
+          last updated: {{ post.updated_on|timesince }},
+          by <a class="badge badge-secondary" href="#">{{ post.author }}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

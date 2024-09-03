@@ -15,7 +15,7 @@ v_call_secret_key=GetSecret("django-prod-secret")
 SECRET_KEY = v_call_secret_key.fxCallSecret()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['chordataservices.com','www.chordataservices.com']
 

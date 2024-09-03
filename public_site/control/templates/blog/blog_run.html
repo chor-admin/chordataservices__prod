@@ -10,13 +10,13 @@
       <span class="tooltip">Home</span>
     </a>
   </li>
-  <li><a class="active" href="{% url 'blog:blogStartPage' %}">
+  <li><a href="{% url 'blog:blogStartPage' %}">
     {% load static %}
       <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Starting a business blog" style="width:20px;"></img>
       <span class="tooltip">Start a business</span>
     </a>
   </li>
-  <li><a href="{% url 'blog:blogRunPage' %}">
+  <li><a class="active" href="{% url 'blog:blogRunPage' %}">
     {% load static %}
       <img src="{% static '/graphics/blog_eff1f7.png' %}" alt="Running a business blog" style="width:20px;"></img>
       <span class="tooltip">Run a business</span>
@@ -34,7 +34,7 @@
 
 {% block content %}
 
-<h1>Starting a business</h1>
+<h1>Running a business</h1>
 
 <div class="blog_list">
   <p><b>NOTE: </b>The views, idea, and opinions expressed in this blog are shared as informal advise based on
@@ -50,7 +50,7 @@
       <img class="blog_img" src="{{ post.image.url }}" alt="{{ post.title }}">
       {% endif %}
       <div>
-        <a href="{% url 'blog:blogStartPost' post.id post.slug %}">
+        <a href="{% url 'blog:blogRunPost' post.id post.slug %}">
           <h2 class="card-title my-3">{{ post.title }} </h2>
         </a>
         <div class="text-muted mb-3">
@@ -66,7 +66,7 @@
           </div>
         </div>
         <p class="card-text">{{ post.content|truncatewords:20 }}</p>
-        <a class='btn btn-primary' href="{% url 'blog:blogStartPost' post.id post.slug %}">Read more ...</a>
+        <a class='btn btn-primary' href="{% url 'blog:blogRunPost' post.id post.slug %}">Read more ...</a>
       </div>
     </div>
     {% endfor %}
