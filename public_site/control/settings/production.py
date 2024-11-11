@@ -15,9 +15,13 @@ v_call_secret_key=GetSecret("django-prod-secret")
 SECRET_KEY = v_call_secret_key.fxCallSecret()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1',
+                 '52.230.158.17',
+                 'chordataservices.com',
 
-ALLOWED_HOSTS = ['chordataservices.com','www.chordataservices.com']
+                 'speed.cloudflare.com'
+                 ]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -66,9 +70,9 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 mimetypes.add_type("text/css", ".css", True)
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = (os.path.join(BASE_DIR, 'staticfiles'))
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static_custom'))]
 
-MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT =  MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
 MEDIA_URL = '/media/'

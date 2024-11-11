@@ -47,7 +47,7 @@
     {% for post in object_list %}
     <div class="blog_card">
       {% if post.image %}
-      <img class="blog_img" src="{{ post.image.url }}" alt="{{ post.title }}">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}"/>
       {% endif %}
       <div>
         <a href="{% url 'blog:blogStartPost' post.id post.slug %}">
@@ -55,8 +55,8 @@
         </a>
         <div class="text-muted mb-3">
           <div>
-            <span>created: {{ post.created_on|date:"Y M d" }} |</span>
-            <span>updated: {{ post.updated_on|timesince }} ago |</span>
+            <span>created: {{ post.created_on|date:"Y M d" }} | </span>
+            <span>updated: {{ post.updated_on|timesince }} ago | </span>
             <span>author: {{ post.author }}</span>
           </div>
           <div>
@@ -65,7 +65,7 @@
             {% endfor %}
           </div>
         </div>
-        <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+        <p class="card-text">{{ post.content|truncatewords:50 }}</p>
         <a class='btn btn-primary' href="{% url 'blog:blogStartPost' post.id post.slug %}">Read more ...</a>
       </div>
     </div>

@@ -40,7 +40,7 @@
         <h2 class="card-title text-center my-3">{{ post.title }}</h2>
         <div class="text-muted text-center mb-3">
           {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
           {% endif %}
           <div>
             {% for tag in post.tags.all %}
